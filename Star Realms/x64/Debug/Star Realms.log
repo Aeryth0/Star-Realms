@@ -1,2 +1,13 @@
 ﻿  Star Realms.cpp
+  create_deck.cpp
+  deck.cpp
+  myshuffle.cpp
+D:\VS\Repos\Star Realms\Star Realms\myshuffle.cpp(10,15): warning C4267: 'başlatılıyor': 'size_t' - 'int' dönüşümü; veri kaybı olabilir
+  round.cpp
+D:\VS\Repos\Star Realms\Star Realms\round.cpp(15,22): warning C4244: 'bağımsız değişken': 'time_t' - 'unsigned int' dönüşümü; veri kaybı olabilir
+D:\VS\Repos\Star Realms\Star Realms\round.cpp(167,13): warning C4267: '-=': 'size_t' - 'int' dönüşümü; veri kaybı olabilir
+D:\VS\Repos\Star Realms\Star Realms\round.cpp(374,11): warning C4267: 'başlatılıyor': 'size_t' - 'int' dönüşümü; veri kaybı olabilir
+D:\VS\Repos\Star Realms\Star Realms\round.cpp(423,55): warning C4267: 'bağımsız değişken': 'size_t' - 'int' dönüşümü; veri kaybı olabilir
+D:\VS\Repos\Star Realms\Star Realms\round.cpp(434,60): warning C4267: 'bağımsız değişken': 'size_t' - 'int' dönüşümü; veri kaybı olabilir
+  Kod Üretiliyor...
   Star Realms.vcxproj -> D:\VS\Repos\Star Realms\x64\Debug\Star Realms.exe

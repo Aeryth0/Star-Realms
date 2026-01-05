@@ -15,7 +15,9 @@
 // 10. FACT. KOÞUL PARAMETRESÝ,
 // 11. HURDA KOÞULU,
 // 12. HURDA KOÞUL PARAMETRESÝ,
-// 13. FACTION);
+// 13. FACTION
+// 14. ÜS CANI
+// 15 16 17. CONDITION AÇIKLAMALARI);
 
 // BLOB KARTLARI
 card2 blobs[] = {
@@ -91,7 +93,7 @@ card2 stars[] = {
 };
 //FED KARTLARI
 card2 feds[] = {
-	card2("Federasyon Gemisi",1,0,2,0,0,0,0,COND_ADDHEALTH,4,0,0,FACT_FED),
+	card2("Federasyon Gemisi",1,0,2,0,0,0,0,COND_ADDHEALTH,4,0,0,FACT_FED,0,"condition description","fact cond desc.","junk cond desc."),
 	card2("Federasyon Gemisi",1,0,2,0,0,0,0,COND_ADDHEALTH,4,0,0,FACT_FED),
 	card2("Federasyon Gemisi",1,0,2,0,0,0,0,COND_ADDHEALTH,4,0,0,FACT_FED),
 	card2("Kurnaz",2,0,2,4,0,0,0,COND_ADDDAMAGE,4,0,0,FACT_FED),

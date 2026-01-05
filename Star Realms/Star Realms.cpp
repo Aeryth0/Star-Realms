@@ -9,21 +9,15 @@ std::vector<player> players(2);
 
 int main() {
 	int turn = turndecide();
-
-	std::vector<std::unique_ptr<card2>> pazarDestesi = createUniverseDeck();
+	setupGame();
 
 	std::cout << "Oyun Yuklendi! Destede " << pazarDestesi.size() << " kart var." << std::endl;
-
-	myshuffle(pazarDestesi);
-
 	for (int i = 0; i < pazarDestesi.size(); i++) {
 		card2* x = pazarDestesi[i].get();
 		std::cout << x->getname() << std::endl;
 
 	}
 	int gamerollson = 1;
-
-	setupGame();
 
 	for (size_t i = 0; i < players.size(); i++) {
 		std::cout << "Starting Deck Of  " << players[i].playername << std::endl;
@@ -34,7 +28,6 @@ int main() {
 		}
 	}
 	
-
 	gamestart(turn);
 	playround(turn); turn++;
 	
