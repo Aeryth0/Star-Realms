@@ -52,7 +52,7 @@ struct card2 {
     int coin;
     int heal;
     int flags;
-    int basehealth;
+    int baseHealth;
 
     int conditions, condParams; std::string condDescription;
     int factConditions, factParams; std::string factDescription;
@@ -68,8 +68,8 @@ struct card2 {
         // Faction
         ret += factNames[faction];
         // Type (base or ship)
-        if (flags & FLAG_PATROL) ret += "patrol base with " + std::to_string(basehealth) + " health)";
-        else if (flags & FLAG_BASE) ret += "base with " + std::to_string(basehealth) + " health)";
+        if (flags & FLAG_PATROL) ret += "patrol base with " + std::to_string(baseHealth) + " health)";
+        else if (flags & FLAG_BASE) ret += "base with " + std::to_string(baseHealth) + " health)";
         else ret += "ship)";
         // Cost
         ret += "\n\t- Cost: " + std::to_string(cost) + " coins";

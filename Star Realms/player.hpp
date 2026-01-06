@@ -23,7 +23,7 @@ public:
 
     player() {
         std::cout << "Player name: ";
-        std::cin >> playername;
+        std::getline(std::cin, playername);
     }
 };
 
