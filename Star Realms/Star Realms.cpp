@@ -39,10 +39,10 @@ int main() {
 	   if (players[0].hp <= 0 || players[1].hp <= 0) {
 
 		   if (players[0].hp <= 0) {
-			   std::cout << "Player 2 Has Won!!" << std::endl;
+			   std::cout << players[0].playername<<	"Has Won!" << std::endl;
 		   }
 		   else {
-			   std::cout << "Player 1 Has Won!" << std::endl;
+			   std::cout << players[1].playername<< "Has Won!" << std::endl;
 		   }
 		   gamerollson = 0;
 	   }

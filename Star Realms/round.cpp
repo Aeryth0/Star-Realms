@@ -17,11 +17,11 @@ int turndecide() {
 	int turn = std::rand() % 2; 
 
 	if (turn == 0) {
-		std::cout << "Player 1 will start!" << std::endl;
+		std::cout <<players[0].playername<<" will start!" << std::endl;
 	}
 	else {
 		
-		std::cout << "Player 2 will start!" << std::endl;
+		std::cout <<players[1].playername<<" will start!" << std::endl;
 	}
 	
 	return turn;
@@ -29,6 +29,7 @@ int turndecide() {
 
 void gamestart(int turn) {
 	std::cout << "Game Is Starting!" << std::endl;
+	std::cout << "--------------------------------------------------" << std::endl;
 	for (int i = 0; i < 3; ++i) {
 		players[turn].hand.push_back(std::move(players[turn].deck.back()));
 		players[turn].deck.pop_back();
@@ -122,6 +123,7 @@ void discardchoice(int turn) {
 	player& p = players[turn];
 
 	std::cout << "Player " << turn << " should discard a card of their choice." << std::endl;
+	std::cout << "--------------------------------------------------" << std::endl;
 	for (size_t j = 0; j < p.deck.size(); j++) {
 		card2* c = p.deck[j].get();
 		std::cout << "(" << j << ") " << c->getname() << std::endl;
@@ -129,6 +131,7 @@ void discardchoice(int turn) {
 	std::cin >> choice;
 	while (choice > p.deck.size() && choice < 0) {
 		std::cout << "Invalid choice!" << std::endl;
+		std::cout << "--------------------------------------------------" << std::endl;
 		std::cin >> choice;
 	}
 	p.discard.push_back(std::move(p.deck[choice]));
@@ -140,24 +143,29 @@ void junkchoice(int turn) {
 	player& p = players[turn];
 
 	std::cout << "You can junk a card if you want. Do you want to? (0/1): "; std::cin >> choice;
+	std::cout << "--------------------------------------------------" << std::endl;
 	if (!choice) return;
 
 	std::cout << "Cards on deck:" << std::endl;
+	std::cout << "--------------------------------------------------" << std::endl;
 	size_t j = 0, decksize = p.deck.size();
 	for (j = 0; j < p.deck.size(); j++) {
 		card2* c = p.deck[j].get();
 		std::cout << "(" << j << ") " << c->getname() << std::endl;
 	}
 	std::cout << std::endl << "Cards on discard:" << std::endl;
+	std::cout << "--------------------------------------------------" << std::endl;
 	for (; j < p.discard.size()+decksize; j++) {
 		card2* c = p.discard[j-decksize].get();
 		std::cout << "(" << j << ") " << c->getname() << std::endl;
 	}
 
 	std::cout << "Select a card to junk:" << std::endl;
+	std::cout << "--------------------------------------------------" << std::endl;
 	std::cin >> choice;
 	while (choice > j && choice < 0) {
 		std::cout << "Invalid choice!" << std::endl;
+		std::cout << "--------------------------------------------------" << std::endl;
 		std::cin >> choice;
 	}
 	if (choice < decksize) {
@@ -187,15 +195,19 @@ void junkmarket(int turn, bool ask) {
 	printmarket();
 	if (ask) {
 		std::cout << "Do you want to junk a card from current market(0/1): "; std::cin >> choice;
+		std::cout << "--------------------------------------------------" << std::endl;
 		while (choice > 1 && choice < 0) {
 			std::cout << "Invalid choice!" << std::endl;
+			std::cout << "--------------------------------------------------" << std::endl;
 			std::cin >> choice;
 		}
 		if (choice == 0) return;
 	}
 	std::cout << "Select a card from current market to junk: "; std::cin >> choice;
+	std::cout << "--------------------------------------------------" << std::endl;
 	while (choice > 4 && choice < 0) {
 		std::cout << "Invalid choice!" << std::endl;
+		std::cout << "--------------------------------------------------" << std::endl;
 		std::cin >> choice;
 	}
 	drawtomarket(choice);
@@ -207,6 +219,7 @@ void destroybase(int turn) {
 
 	int choice = 0;
 	std::cout << "Select a base from player " << turn << "to destroy: " << std::endl;
+	std::cout << "--------------------------------------------------" << std::endl;
 	for (size_t i = 0; i < p.bases.size(); i++) {
 		card2* c = p.bases[i].get();
 		std::cout << c->getname() << std::endl;
@@ -215,6 +228,7 @@ void destroybase(int turn) {
 	std::cin >> choice;
 	while (choice > p.bases.size() && choice < 0) {
 		std::cout << "Invalid choice!" << std::endl;
+		std::cout << "--------------------------------------------------" << std::endl;
 		std::cin >> choice;
 	}
 	p.discard.push_back(std::move(p.bases[choice]));
@@ -226,11 +240,13 @@ void actions(int turn, int cond, int param,  card2* c, player& p, int i, int& to
 		case COND_CHOICE: {
 		int choice = 0;
 		std::cout << "Select either of two: ";
+		std::cout << "--------------------------------------------------" << std::endl;
 		switch (param) {
 		case 0:
 			std::terminate(); break;
 		case 1:
 			std::cout << "(1) " << c->coin << " coins or (2) " << c->heal << " healing:";
+			std::cout << "--------------------------------------------------" << std::endl;
 			std::cin >> choice;
 			if (choice == 1)
 				totalmoney += c->coin;
@@ -239,6 +255,7 @@ void actions(int turn, int cond, int param,  card2* c, player& p, int i, int& to
 			break;
 		case 2:
 			std::cout << "(1) " << c->coin << " coins or (2) " << c->damage << " damage:";
+			std::cout << "--------------------------------------------------" << std::endl;
 			std::cin >> choice;
 			if (choice == 1)
 				totalmoney += c->coin;
@@ -247,6 +264,7 @@ void actions(int turn, int cond, int param,  card2* c, player& p, int i, int& to
 			break;
 		case 3:
 			std::cout << "(1) " << c->heal << " healing or (2) " << c->damage << " damage:";
+			std::cout << "--------------------------------------------------" << std::endl;
 			std::cin >> choice;
 			if (choice == 1)
 				totalheal += c->heal;
@@ -445,12 +463,15 @@ void playround(int turn) {
 	// Buy cards from market.
 	while (p.money) {
 		std::cout << "You have " << p.money << " coins, select a card to buy or type 'x' to quit: " << std::endl;
+		std::cout << "--------------------------------------------------" << std::endl;
 		printmarket();
+		std::cout << "--------------------------------------------------" << std::endl;
 		std::string Choice; std::getline(std::cin, Choice);
 		char choice = Choice[0];
 
 		while ((choice < '0' || choice > '5') && choice != 'x') {
 			std::cout << "Invalid choice!" << std::endl;
+			std::cout << "--------------------------------------------------" << std::endl;
 			std::getline(std::cin, Choice);
 			choice = Choice[0];
 		}
@@ -462,6 +483,7 @@ void playround(int turn) {
 		}
 		else if (currentMarket[choice].get()->cost > p.money) {
 			std::cout << "BROKE NIGGA ALERT!!!" << std::endl;
+			std::cout << "--------------------------------------------------" << std::endl;
 		}
 		else {
 			p.money -= currentMarket[choice].get()->cost;
@@ -475,14 +497,17 @@ void playround(int turn) {
 
 	// Select bases to damage
 	if (players[(turn + 1)%2].bases.size() == 0) {
-		std::cout << "Other player has no bases, giving " << totaldamage << " damage directly. ";
+		std::cout << "Other player has no bases, dealing " << totaldamage << " damage directly. " << std::endl;;
+		std::cout << "--------------------------------------------------" << std::endl;
 		players[(turn + 1)%2].hp -= totaldamage;
 		std::cout << players[(turn + 1)%2].playername << "'s health is now " << players[(turn + 1)%2].hp << std::endl;
+		std::cout << "--------------------------------------------------" << std::endl;
 	}
 	else {
 		int patrol = 0;
 		while (totaldamage && players[(turn + 1)%2].bases.size()) {
 			std::cout << players[(turn + 1)%2].playername << " has these bases which you can destroy, or type 'p' to attack player, or type 'q' to quit: " << std::endl;
+			std::cout << "--------------------------------------------------" << std::endl;
 			for (size_t i = 0; i < players[(turn + 1)%2].bases.size(); i++) {
 				card2* c = players[(turn + 1)%2].bases[i].get();
 				if (c->flags & FLAG_PATROL) patrol++;
@@ -494,10 +519,12 @@ _attackChoice:
 				if (!patrol) {
 					players[(turn + 1)%2].hp -= totaldamage;
 					std::cout << players[(turn + 1)%2].playername << "'s health is now " << players[(turn + 1)%2].hp << std::endl;
+					std::cout << "--------------------------------------------------" << std::endl;
 					break;
 				}
 				else {
 					std::cout << "You cannot attack the player without destroying their patrol bases first!" << std::endl;
+					std::cout << "--------------------------------------------------" << std::endl;
 					goto _attackChoice;
 				}
 			}
@@ -508,11 +535,13 @@ _attackChoice:
 			choice -= '0';
 			if (choice < 0 || choice > players[(turn + 1)%2].bases.size()) {
 				std::cout << "Invalid choice!" << std::endl;
+				std::cout << "--------------------------------------------------" << std::endl;
 				goto _attackChoice;
 			}
 
 			if (totaldamage < players[(turn + 1)%2].bases[choice].get()->baseHealth) {
 				std::cout << "Insufficient damage!" << std::endl;
+				std::cout << "--------------------------------------------------" << std::endl;
 				goto _attackChoice;
 			}
 			else {
@@ -522,9 +551,11 @@ _attackChoice:
 			}
 		}
 		if (totaldamage>0 && patrol == 0) {
-			std::cout << "Giving remaining " << totaldamage << " damage directly. ";
+			std::cout << "Dealing remaining " << totaldamage << " damage directly. ";
+			std::cout << "--------------------------------------------------" << std::endl;
 			players[(turn + 1)%2].hp -= totaldamage;
 			std::cout << players[(turn + 1)%2].playername << "'s health is now " << players[(turn + 1)%2].hp << std::endl;
+			std::cout << "--------------------------------------------------" << std::endl;
 		}
 	}
 	// End
